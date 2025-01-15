@@ -1,44 +1,88 @@
-to Setup the django project you need python 3.10 and above version installed in your system
+Here's a step-by-step guide with proper formatting for setting up and running your Django project:
 
-unzip the project and go to the project directory.
-start your postgre server
-create table name "task_manage" in postgres db with "postgre" username and
-"Admin" password
+---
 
-open terminal and run command "pip install pipenv"
+### Prerequisites:
+- **Python 3.10 or above** installed on your system.
+- **PostgreSQL** server running with a database named `task_manage`, a username `postgre`, and a password `Admin`.
 
-then  run command " pip install -r requirements.txt"
+---
 
-for perfroming data base migration "python3 manage.py makemigrations" after that "python3 manage.py migrate"
+### 1. Setup Instructions:
 
-after that create super user for that run command "python3 manage.py createsuperuser"
+1. **Unzip the project** and navigate to the project directory.
 
+2. **Start your PostgreSQL server**.
 
-then for running server runn command "python3 manage.py runserver"
+3. **Create the database**:
+    - Create a table named `task_manage` in PostgreSQL with the username `postgre` and password `Admin`.
 
-after successfully running the server you can assess 
+4. **Install pipenv**:
+    - Open the terminal and run:
+    ```bash
+    pip install pipenv
+    ```
 
-admin panel at /admin/
-api documentation for 
-        redoc - /redoc/
-        swaggger - /swaggger/
+5. **Install project dependencies**:
+    - Run the following command in the project directory:
+    ```bash
+    pipenv install -r requirements.txt
+    ```
 
-to access the  api you need the jwt token 
+6. **Database migration**:
+    - Run the following commands to apply database migrations:
+    ```bash
+    python3 manage.py makemigrations
+    python3 manage.py migrate
+    ```
 
-for that /auth/jwt/create/  - hit this api and get access token 
+7. **Create a superuser**:
+    - Run the following command to create an admin superuser for accessing the Django admin panel:
+    ```bash
+    python3 manage.py createsuperuser
+    ```
 
-and add "JWT token" in this format 
-if you are using browser the add modheader crome extension  then pass the  token 
+8. **Run the server**:
+    - Start the server by running:
+    ```bash
+    python3 manage.py runserver
+    ```
 
-and for postman send this token into the headers 
+---
 
-Add key "Authorization" and value "JWT token"
+### 2. Accessing the Application:
 
-then you are above to test the poject 
+- After successfully running the server, you can access:
+    - **Admin Panel**: [http://localhost:8000/admin/](http://localhost:8000/admin/)
+    - **API Documentation**:
+        - **Redoc**: [http://localhost:8000/redoc/](http://localhost:8000/redoc/)
+        - **Swagger**: [http://localhost:8000/swagger/](http://localhost:8000/swagger/)
 
+---
 
-for api 
+### 3. Using the API:
 
-    /api/tasks/
+- To use the API, you need to authenticate with a **JWT token**.
 
+#### Steps to Get JWT Token:
+1. **Create a JWT Token**:
+   - Hit the `/auth/jwt/create/` API endpoint to obtain the access token.
+   
+2. **Send the JWT Token**:
+   - If you're using a **browser**, add the token via the [ModHeader Chrome extension](https://chrome.google.com/webstore/detail/modheader/).
+     - Add a header with the key `Authorization` and value `JWT <your_token>`.
+   - If you're using **Postman**, include the token in the header:
+     - Key: `Authorization`
+     - Value: `JWT <your_token>`
 
+---
+
+### 4. API Endpoints:
+
+- **Tasks API**:  
+   - Endpoint: `/api/tasks/`  
+   - Format: GET, POST, PUT, DELETE operations for task management.
+
+---
+
+This should allow you to set up the project, run the server, access the API, and authenticate with a JWT token to test the functionalities.
